@@ -1,7 +1,7 @@
 .background {
   background: #f0f0f2;
   width: 100vw;
-  height: 310vw;
+  height: 338vw;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -31,7 +31,7 @@
 
 .input_card_1 {
   width: 90vw;
-  height: 65vw;
+  height: 78vw;
   border-radius: 15px;
   margin: 5vw;
   padding: 4vw;
@@ -40,7 +40,12 @@
   flex-direction: column;
 }
 
-.input_card_1 > input {
+.input_card_1 > form {
+  display: flex;
+  flex-direction: column;
+}
+
+.input_card_1 > form > input {
   background-color: #f0f0f2;
   border: none;
   outline: none;
@@ -51,7 +56,7 @@
 
 .input_card_2 {
   width: 90vw;
-  height: 40vw;
+  height: 50vw;
   border-radius: 15px;
   margin: 5vw;
   padding: 4vw;
@@ -60,7 +65,12 @@
   flex-direction: column;
 }
 
-.input_card_2 > input {
+.input_card_2 > form {
+  display: flex;
+  flex-direction: column;
+}
+
+.input_card_2 > form > input {
   background-color: #f0f0f2;
   border: none;
   outline: none;
@@ -69,3 +79,16 @@
   border-radius: 15px;
 }
 
+.submit_btn {
+  width: 100%;
+  padding: 5vw;
+  text-align: center;
+}
+
+.submit_btn > input {
+  background-image: linear-gradient(rgb(117, 196, 136), rgb(12, 167, 170));
+  color: #ffff;
+  width: 20vw;
+  padding: 5px;
+  border-radius: 15px;
+}
