@@ -18,7 +18,7 @@ interface ItoastSth {
   ): void;
 }
 
-export const HomePage: React.FC = () => {
+const HomePage: React.FC = () => {
   const { register, handleSubmit } = useForm();
   const { register: registerForCancel, handleSubmit: handleSubmitForCancel } =
     useForm();
@@ -85,6 +85,8 @@ export const HomePage: React.FC = () => {
     </div>
   );
 };
+
+export default HomePage
 
 export const toastSth: ItoastSth = (toastMode, toastText, toastSetting) => {
   switch (toastMode) {
