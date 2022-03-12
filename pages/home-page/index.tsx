@@ -23,7 +23,7 @@ export const HomePage: React.FC = () => {
   const { register: registerForCancel, handleSubmit: handleSubmitForCancel } =
     useForm();
 
-  const onSetSubmit: SubmitHandler<ISetParam> = async (data) => {
+  const onSetSubmit: SubmitHandler<any> = async (data) => {
     await setSign(data);
   };
 
