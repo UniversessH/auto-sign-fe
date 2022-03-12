@@ -19,16 +19,15 @@ client.interceptors.request.use(
 client.interceptors.response.use(
   (response) => {
     console.log("成功响应拦截");
-    toastSth("success", response.data.message, { theme: "colored" });
+    toastSth("success", response.data.msg, { theme: "colored" });
     return response.data;
   },
   (error) => {
     console.log("错误响应拦截");
     console.log(error.response);
-    toastSth("error", "ddd", { theme: "colored" });
+    toastSth("error", error.response.data.msg, { theme: "colored" });
     // return Promise.reject(error);
   }
 );
 
 export default client;
-

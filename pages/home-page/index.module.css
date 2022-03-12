@@ -83,7 +83,9 @@
 .submit_btn {
   width: 100%;
   padding-top: 7vw;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .submit_btn > input {
@@ -92,4 +94,26 @@
   width: 20vw;
   padding: 5px;
   border-radius: 15px;
+  text-align: center;
 }
+
+.spin{
+    margin: unset;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    border: 0.3rem solid rgba(117, 196, 136, 0.3);
+    border-top-color: rgb(117, 196, 136);
+    animation: 1.5s spin infinite linear;
+}
+
+.spin.multi{
+  border-bottom-color: rgb(117, 196, 136);
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+

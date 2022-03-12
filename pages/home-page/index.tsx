@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { ToastContainer, toast } from "react-toastify";
 import styles from "./index.module.css";
 import { setSign } from "../api/set-sign";
 import { cancelSign } from "../api/cancel.sign";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 
 interface ISetParam {
   Url: string;
@@ -20,20 +20,34 @@ interface ItoastSth {
 
 const HomePage: React.FC = () => {
   const { register, handleSubmit } = useForm();
+  const [isLoading, setIsloading] = useState(false);
+  const [cancelIsLoading, setCancelIsloading] = useState(false);
   const { register: registerForCancel, handleSubmit: handleSubmitForCancel } =
     useForm();
 
   const onSetSubmit: SubmitHandler<any> = async (data) => {
-    await setSign(data);
+    setIsloading(true);
+    try {
+      await setSign(data);
+      setIsloading(false);
+    } catch {
+      console.error();
+    }
   };
 
   const onCancelSubmit: SubmitHandler<any> = async (data) => {
-    await cancelSign(data)
+    setCancelIsloading(true);
+    try {
+      await cancelSign(data);
+      setCancelIsloading(false);
+    } catch {
+      console.error();
+    }
   };
 
   return (
     <div className={styles.background}>
-      <ToastContainer hideProgressBar={true}/>
+      <ToastContainer limit={3} hideProgressBar={true} />
       <div className={styles.info_card_1}>
         <h2>👀 这是个啥?</h2>
         <p>
@@ -47,7 +61,7 @@ const HomePage: React.FC = () => {
         <p>2.找到"a学生疫情常态化管理"</p>
         <img src="/img_1.jpg" />
         <p>3.点击进入后,点击右上角三个小圆点,选择"复制链接"</p>
-        <img src="/img_2.png"/>
+        <img src="/img_2.png" />
       </div>
       <div className={styles.input_card_1}>
         <form onSubmit={handleSubmit(onSetSubmit)}>
@@ -61,23 +75,29 @@ const HomePage: React.FC = () => {
           </span>
           <input {...register("addressInfo")} placeholder="填写地址" />
           <div className={styles.submit_btn}>
-            <input type={"submit"} />
+            {isLoading ? (
+              <div className={styles.spin}></div>
+            ) : (
+              <input type={"submit"} />
+            )}
           </div>
         </form>
       </div>
       <div className={styles.input_card_2}>
         <form onSubmit={handleSubmitForCancel(onCancelSubmit)}>
           <h2 style={{ color: "rgb(248, 54, 54)" }}>❌ 取消自动打卡</h2>
-          <span style={{ margin: "10px 0 10px 0" }}>
-            填写步骤3中复制的链接
-          </span>
+          <span style={{ margin: "10px 0 10px 0" }}>填写步骤3中复制的链接</span>
           <input
             type={"url"}
             {...registerForCancel("url")}
             placeholder="粘贴链接"
           />
           <div className={styles.submit_btn}>
-            <input type={"submit"} />
+            {cancelIsLoading ? (
+              <div className={styles.spin}></div>
+            ) : (
+              <input type={"submit"} />
+            )}
           </div>
         </form>
       </div>
@@ -86,7 +106,7 @@ const HomePage: React.FC = () => {
   );
 };
 
-export default HomePage
+export default HomePage;
 
 export const toastSth: ItoastSth = (toastMode, toastText, toastSetting) => {
   switch (toastMode) {
