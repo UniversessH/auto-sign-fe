@@ -32,6 +32,7 @@ const HomePage: React.FC = () => {
       setIsloading(false);
     } catch {
       console.error();
+      setIsloading(false);
     }
   };
 
@@ -42,6 +43,7 @@ const HomePage: React.FC = () => {
       setCancelIsloading(false);
     } catch {
       console.error();
+      setIsloading(false);
     }
   };
 
